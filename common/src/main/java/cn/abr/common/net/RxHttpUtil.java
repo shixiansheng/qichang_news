@@ -1,6 +1,8 @@
 package cn.abr.common.net;
 
 
+import org.reactivestreams.Publisher;
+
 import cn.abr.common.base.BaseEntity;
 import cn.abr.common.net.exception.ApiException;
 import io.reactivex.BackpressureStrategy;
@@ -26,8 +28,13 @@ public class RxHttpUtil {
      * @return
      */
     public static <T> FlowableTransformer<T, T> rxSchedulerHelper() {    //compose简化线程
-        return observable -> observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+        return new FlowableTransformer<T, T>() {
+            @Override
+            public Publisher<T> apply(Flowable<T> observable) {
+                return observable.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread());
+            }
+        };
     }
 
     /**
@@ -37,13 +44,21 @@ public class RxHttpUtil {
      * @return
      */
     public static <T> FlowableTransformer<BaseEntity<T>, T> handleResult() {   //compose判断结果
-        return httpResponseFlowable -> httpResponseFlowable.flatMap((Function<BaseEntity<T>, Flowable<T>>) PHHttpResponse -> {
-            if (PHHttpResponse.getCode().equals(HTTP_REQUEST_SUCCESS_CODE)) {
-                return createData(PHHttpResponse.getData());
-            } else {
-                return Flowable.error(new ApiException(new Exception(PHHttpResponse.getMsg()), PHHttpResponse.getCode()));
+        return new FlowableTransformer<BaseEntity<T>, T>() {
+            @Override
+            public Publisher<T> apply(Flowable<BaseEntity<T>> httpResponseFlowable) {
+                return httpResponseFlowable.flatMap((Function<BaseEntity<T>, Flowable<T>>) new Function<BaseEntity<T>, Flowable<T>>() {
+                    @Override
+                    public Flowable<T> apply(BaseEntity<T> PHHttpResponse) throws Exception {
+                        if (PHHttpResponse.getCode().equals(HTTP_REQUEST_SUCCESS_CODE)) {
+                            return createData(PHHttpResponse.getData());
+                        } else {
+                            return Flowable.error(new ApiException(new Exception(PHHttpResponse.getMsg()), PHHttpResponse.getCode()));
+                        }
+                    }
+                });
             }
-        });
+        };
     }
 
     /**

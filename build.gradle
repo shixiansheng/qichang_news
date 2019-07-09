@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: "config.gradle"
 buildscript {
-    ext.kotlin_version = '1.3.31'
+    ext.kotlin_version = '1.3.41'
     repositories {
         // 添加阿里云 maven 地址
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
@@ -15,7 +15,14 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-
+//为了防止不同模块的资源应为命名冲突而被错误的覆盖
+subprojects {
+    afterEvaluate {
+        android {
+            resourcePrefix "${project.name}_"
+        }
+    }
+}
 allprojects {
     repositories {
         // 添加阿里云 maven 地址

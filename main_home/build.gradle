@@ -1,30 +1,46 @@
-apply plugin: 'com.android.application'
+def config = rootProject.ext
+if (isHomeModule.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
 
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-// 可以参考 module-kotlin 模块中的写法
 apply plugin: 'kotlin-kapt'
-def config = rootProject.ext
 android {
     compileSdkVersion config.android.compileSdkVersion
+
     defaultConfig {
-        applicationId "cn.abr.qichang_news"
+        if (isHomeModule.toBoolean()) {
+            applicationId "cn.abr.main.home"
+        }
         minSdkVersion config.android.minSdkVersion
         targetSdkVersion config.android.targetSdkVersion
         versionCode config.android.versionCode
         versionName config.android.versionName
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-    buildTypes {
-        release {
-            minifyEnabled true   //开启混淆
-            zipAlignEnabled true  //压缩优化
-            shrinkResources true  //移出无用资源
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+
     }
 
+    buildTypes {
+        release {
+            consumerProguardFiles   'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            if (isHomeModule.toBoolean()) {
+                manifest.srcFile 'src/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+                java {
+                    exclude '**/debug/**'
+                }
+            }
+        }
+    }
 }
 kapt {
     arguments {
@@ -38,7 +54,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation project(path: ':common')
     kapt config.dependencies["arouter-compiler"]
-    if (!isHomeModule.toBoolean()) {
-        implementation project(path: ':main_home')
-    }
 }
