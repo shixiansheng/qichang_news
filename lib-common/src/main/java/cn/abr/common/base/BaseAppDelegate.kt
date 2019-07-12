@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 
 import cn.abr.common.util.ConstantUtil
+import cn.abr.common.util.DensityUtil
 import com.alibaba.android.arouter.launcher.ARouter
 
 
@@ -11,6 +12,7 @@ internal class BaseAppDelegate(private val mApplication: Application) : AppInter
 
     override fun initLocalOptions() {
         ConstantUtil.init(mApplication)     //全局Utils
+        DensityUtil.setDensity(mApplication,375f)
         InitializeService.start(mApplication)   //初始化服务Service
     }
 
