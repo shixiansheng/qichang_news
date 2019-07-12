@@ -34,7 +34,7 @@
 # 混淆时不记录日志
 -verbose
 # 忽略警告
--ignorewarning
+#-ignorewarning
 # 代码优化
 -dontshrink
 # 不优化输入的类文件
@@ -173,14 +173,5 @@
 
 ###############################---------------第三方库------------------#######################################
 
-##############################ARouter混淆配置
--keep public class com.alibaba.android.arouter.routes.**{*;}
--keep public class com.alibaba.android.arouter.facade.**{*;}
--keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
 
-# If you use the byType method to obtain Service, add the following rules to protect the interface:
--keep interface * implements com.alibaba.android.arouter.facade.template.IProvider
-
-# If single-type injection is used, that is, no interface is defined to implement IProvider, the following rules need to be added to protect the implementation
- -keep class * implements com.alibaba.android.arouter.facade.template.IProvider
 

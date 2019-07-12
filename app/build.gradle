@@ -7,6 +7,20 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 def config = rootProject.ext
 android {
+    signingConfigs {
+        release {
+            keyAlias 'qichang'
+            keyPassword '123456'
+            storeFile file('../keystore/qichang.jks')
+            storePassword '123456'
+        }
+        debug {
+            keyAlias 'qichang'
+            keyPassword '123456'
+            storeFile file('../keystore/qichang.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion config.android.compileSdkVersion
     defaultConfig {
         applicationId "cn.abr.qichang_news"
@@ -19,12 +33,25 @@ android {
     buildTypes {
         release {
             minifyEnabled true   //开启混淆
+            //zipAlignEnabled true  //压缩优化
+           // shrinkResources true  //移出无用资源
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+        /*debug {
+            minifyEnabled false   //开启混淆
             zipAlignEnabled true  //压缩优化
             shrinkResources true  //移出无用资源
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+        }*/
     }
-
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
 }
 kapt {
     arguments {
@@ -36,9 +63,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation project(path: ':lib-common')
     kapt config.dependencies["arouter-compiler"]
+    kapt config.dependencies["dagger-compiler"]
+    kapt config.dependencies["dagger-android-processor"]
+    implementation project(':lib-common')
+
     if (!isHomeModule.toBoolean()) {
-        implementation project(path: ':main_home')
+        implementation project(':main_home')
     }
+
 }

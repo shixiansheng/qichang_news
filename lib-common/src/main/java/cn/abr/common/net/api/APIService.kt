@@ -13,4 +13,6 @@ import retrofit2.http.*
 
 interface APIService {
 
+    @GET("https://api.qichangv.com/Content/getNews/{newsId}")
+    fun getArticleContent(@Path("newsId") id: String): Flowable<ResponseBody>
 }
