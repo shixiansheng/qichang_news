@@ -1,6 +1,6 @@
 package cn.abr.qichang_news;
 
-import cn.abr.common.base.BaseActivityComponent;
+import cn.abr.common.base.BaseFragmentComponent;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
@@ -14,10 +14,10 @@ import dagger.android.ContributesAndroidInjector;
  * 描述：
  */
 @Module(subcomponents = {
-        BaseActivityComponent.class
+        BaseFragmentComponent.class
 })
-public abstract class AllActivitysModule {
+public abstract class AllFragmentsModule {
 
     @ContributesAndroidInjector(modules = MainModule.class)
-    abstract MainActivity contributeMainActivityInjector();
+    abstract MainFragment contributeMainFragmentInjector();
 }

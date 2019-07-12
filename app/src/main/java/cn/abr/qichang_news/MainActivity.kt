@@ -16,7 +16,7 @@ class MainActivity : BasePresenterActivity<MainPresenter>(), MainContract.View {
         get() = R.layout.activity_main
 
     override fun initView() {
-        Toast.makeText(this, name, Toast.LENGTH_LONG).show()
+        supportFragmentManager.beginTransaction().add(R.id.root_layout,MainFragment()).commit()
     }
 
     override fun initData() {

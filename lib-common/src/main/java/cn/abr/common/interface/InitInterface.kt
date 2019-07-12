@@ -13,7 +13,7 @@ import android.view.View
  * 描述：
  *
  */
-interface BaseActivityInterface : View.OnClickListener {
+interface InitInterface : View.OnClickListener {
 
     val layoutId: Int
     fun initView()

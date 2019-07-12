@@ -1,6 +1,5 @@
 package cn.abr.common.base;
 
-import cn.abr.common.base.BaseActivity;
 import cn.abr.inabr.base.BasePresenterActivity;
 import dagger.Subcomponent;
 import dagger.android.AndroidInjectionModule;
@@ -18,10 +17,10 @@ import dagger.android.AndroidInjector;
 @Subcomponent(modules = {
         AndroidInjectionModule.class
 })
-public interface BaseActivityComponent extends AndroidInjector<BasePresenterActivity> {
+public interface BaseFragmentComponent extends AndroidInjector<BasePresenterFragment> {
 
     @Subcomponent.Factory
-    abstract class Factory implements AndroidInjector.Factory<BasePresenterActivity> {
+    abstract class Factory implements AndroidInjector.Factory<BasePresenterFragment> {
     }
 
 }

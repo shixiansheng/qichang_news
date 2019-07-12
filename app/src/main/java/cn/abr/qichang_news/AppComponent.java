@@ -16,7 +16,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
  * 描述：
  */
 @Component(modules = {AndroidInjectionModule.class,
-        AndroidSupportInjectionModule.class, AllActivitysModule.class})
+        AndroidSupportInjectionModule.class, AllActivitysModule.class, AllFragmentsModule.class})
 public interface AppComponent {
     void inject(App application);
 }

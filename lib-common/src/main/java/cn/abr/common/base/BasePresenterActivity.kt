@@ -2,17 +2,12 @@ package cn.abr.inabr.base
 
 
 import android.os.Bundle
-import android.view.View
-import android.view.View.*
-import cn.abr.common.`interface`.BaseActivityInterface
-import cn.abr.common.`interface`.VisibilityInterface
 import cn.abr.common.base.BaseActivity
-import cn.abr.common.util.ActivityManager
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
-import dagger.android.support.DaggerAppCompatActivity
+import leakcanary.LeakSentry
 import javax.inject.Inject
 
 
@@ -36,7 +31,8 @@ abstract class BasePresenterActivity<P : BasePresenter<*, *>> : BaseActivity(), 
     override fun onDestroy() {
         super.onDestroy()
         mPresenter.detach()
-       // LeakSentry.refWatcher.watch(mPresenter)
+        LeakSentry.refWatcher.watch(mPresenter)
+        LeakSentry.refWatcher.watch(this)
     }
 }
 /*
