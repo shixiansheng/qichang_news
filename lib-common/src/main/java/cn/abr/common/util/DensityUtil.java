@@ -5,9 +5,13 @@ import android.app.Application;
 import android.content.ComponentCallbacks;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * 版权：汽场(北京)信息科技有限公司 版权所有
@@ -79,7 +83,7 @@ public class DensityUtil {
          */
 
         DisplayMetrics activityDisplayMetrics = activity.getResources().getDisplayMetrics();
-        Logger.d(Density.class,"bbbbbbbbbbb"+targetDensity);
+        Logger.getLogger("DensityUtil").log(Level.INFO,"density:"+targetDensity);
         activityDisplayMetrics.density = targetDensity;
         activityDisplayMetrics.scaledDensity = targetScaledDensity;
         activityDisplayMetrics.densityDpi = targetDensityDpi;
