@@ -3,18 +3,21 @@ package cn.abr.inabr.base
 
 import android.os.Bundle
 import cn.abr.common.base.BaseActivity
+import dagger.Lazy
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import leakcanary.LeakSentry
 import javax.inject.Inject
+import javax.inject.Named
 
 
 abstract class BasePresenterActivity<P : BasePresenter<*, *>> : BaseActivity(), HasAndroidInjector {
 
     @Inject
-    lateinit var mPresenter: P
+    internal lateinit var mPresenter: Lazy<P>
+
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
@@ -30,9 +33,13 @@ abstract class BasePresenterActivity<P : BasePresenter<*, *>> : BaseActivity(), 
 
     override fun onDestroy() {
         super.onDestroy()
-        mPresenter.detach()
+        // mPresenter.value.detach()
         LeakSentry.refWatcher.watch(mPresenter)
         LeakSentry.refWatcher.watch(this)
+    }
+
+    protected fun getPresenter(): P {
+        return mPresenter.get()
     }
 }
 /*

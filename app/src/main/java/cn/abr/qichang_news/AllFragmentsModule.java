@@ -18,6 +18,6 @@ import dagger.android.ContributesAndroidInjector;
 })
 public abstract class AllFragmentsModule {
 
-    @ContributesAndroidInjector(modules = MainModule.class)
+    @ContributesAndroidInjector(modules = FragmentModule.class)
     abstract MainFragment contributeMainFragmentInjector();
 }

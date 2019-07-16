@@ -2,6 +2,7 @@ package cn.abr.common.base
 
 import android.content.Context
 import cn.abr.inabr.base.BasePresenter
+import dagger.Lazy
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -20,10 +21,11 @@ import javax.inject.Inject
  * 描述：
  *
  */
-abstract class BasePresenterFragment<P : BasePresenter<*, *>> : LazyLoadFragment() ,HasAndroidInjector{
+abstract class BasePresenterFragment<P : BasePresenter<*, *>> : LazyLoadFragment(),
+    HasAndroidInjector {
 
     @Inject
-    lateinit var mPresenter: P
+    internal lateinit var mPresenter: Lazy<P>
 
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Any>
@@ -35,6 +37,10 @@ abstract class BasePresenterFragment<P : BasePresenter<*, *>> : LazyLoadFragment
 
     override fun androidInjector(): AndroidInjector<Any> {
         return androidInjector
+    }
+
+    protected fun getPresenter(): P {
+        return mPresenter.get()
     }
 
     override fun initImmersionBar() {
@@ -49,4 +55,6 @@ abstract class BasePresenterFragment<P : BasePresenter<*, *>> : LazyLoadFragment
         LeakSentry.refWatcher.watch(mPresenter)
         LeakSentry.refWatcher.watch(this)
     }
+
+
 }

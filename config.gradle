@@ -16,48 +16,60 @@ ext {
             okhttp      : "3.8.1",
             butterknife : "8.8.1",
             smartRefresh: "1.1.0-andx-13",
-            leakcanary  : "1.5.4",
             dagger      : "2.23.2",
+            rxlifecycle      : "3.0.0",
+            immersionbar      : "3.0.0-beta05",
 
     ]
 
     dependencies = [
             //base
-            "appcompat"                           : "androidx.appcompat:appcompat:1.0.2",
-            "core-ktx"                            : 'androidx.core:core-ktx:1.0.2',
-            "constraintlayout"                    : "androidx.constraintlayout:constraintlayout:1.1.3",
+            "appcompat"               : "androidx.appcompat:appcompat:1.0.2",
+            "core-ktx"                : 'androidx.core:core-ktx:1.0.2',
+            "constraintlayout"        : "androidx.constraintlayout:constraintlayout:1.1.3",
             //retrofit
-            "retrofit"                            : "com.squareup.retrofit2:retrofit:${dependVersion.retrofit}",
-            "adapter-rxjava2"                     : "com.squareup.retrofit2:adapter-rxjava2:$dependVersion.retrofit",
-            "retrofit-converter-gson"             : "com.squareup.retrofit2:converter-gson:${dependVersion.retrofit}",
-            "logging-interceptor"                 : "com.squareup.okhttp3:logging-interceptor:${dependVersion.okhttp}",
+            "retrofit"                : "com.squareup.retrofit2:retrofit:${dependVersion.retrofit}",
+            "adapter-rxjava2"         : "com.squareup.retrofit2:adapter-rxjava2:$dependVersion.retrofit",
+            "retrofit-converter-gson" : "com.squareup.retrofit2:converter-gson:${dependVersion.retrofit}",
+            "logging-interceptor"     : "com.squareup.okhttp3:logging-interceptor:${dependVersion.okhttp}",
 
             //rx
-            "rxjava2:rxjava"                      : "io.reactivex.rxjava2:rxjava:2.2.0",
-            "rxjava2:rxandroid"                   : "io.reactivex.rxjava2:rxandroid:2.0.1",
+            "rxjava2:rxjava"          : "io.reactivex.rxjava2:rxjava:2.2.0",
+            "rxjava2:rxandroid"       : "io.reactivex.rxjava2:rxandroid:2.0.1",
 
             //arouter
-            "arouter-api"                         : "com.alibaba:arouter-api:1.5.0",
-            "arouter-compiler"                    : "com.alibaba:arouter-compiler:1.2.2",
+            "arouter-api"             : "com.alibaba:arouter-api:1.5.0",
+            "arouter-compiler"        : "com.alibaba:arouter-compiler:1.2.2",
 
 
             //1.1.0 androidx 版本
-            "SmartRefreshLayout"                  : "com.scwang.smartrefresh:SmartRefreshLayout:${dependVersion.smartRefresh}",
-            "SmartRefreshHeader"                  : "com.scwang.smartrefresh:SmartRefreshHeader:${dependVersion.smartRefresh}",
-            "legacy-support-v4"                   : "androidx.legacy:legacy-support-v4:1.0.0",
+            "SmartRefreshLayout"      : "com.scwang.smartrefresh:SmartRefreshLayout:${dependVersion.smartRefresh}",
+            "SmartRefreshHeader"      : "com.scwang.smartrefresh:SmartRefreshHeader:${dependVersion.smartRefresh}",
+            "legacy-support-v4"       : "androidx.legacy:legacy-support-v4:1.0.0",
 
             //dagger2
-            "dagger"                              : "com.google.dagger:dagger:${dependVersion.dagger}",
-            "dagger-compiler"                     : "com.google.dagger:dagger-compiler:${dependVersion.dagger}",
-            "dagger-android"                      : "com.google.dagger:dagger-android:${dependVersion.dagger}",
-            "dagger-android-support"              : "com.google.dagger:dagger-android-support:${dependVersion.dagger}",
-            // if you use the support libraries
-            "dagger-android-processor"            : "com.google.dagger:dagger-android-processor:${dependVersion.dagger}",
+            //"dagger"                              : "com.google.dagger:dagger:${dependVersion.dagger}",
+            "dagger-compiler"         : "com.google.dagger:dagger-compiler:${dependVersion.dagger}",
+            "dagger-android"          : "com.google.dagger:dagger-android:${dependVersion.dagger}",
+            "dagger-android-support"  : "com.google.dagger:dagger-android-support:${dependVersion.dagger}",
+            "dagger-android-processor": "com.google.dagger:dagger-android-processor:${dependVersion.dagger}",
 
             //rxLifeCycle
-            "rxlifecycle"                  : "com.trello.rxlifecycle3:rxlifecycle:3.0.0",
-            "rxlifecycle-components": "com.trello.rxlifecycle3:rxlifecycle-components:3.0.0"
+            "rxlifecycle"             : "com.trello.rxlifecycle3:rxlifecycle:${dependVersion.rxlifecycle}",
+            "rxlifecycle-components"  : "com.trello.rxlifecycle3:rxlifecycle-components:${dependVersion.rxlifecycle}",
 
+            //rxcache
+            "RxCache"                 : "com.github.VictorAlbertos.RxCache:runtime:1.8.3-2.x",
+            "Jolyglot_gson"           : 'com.github.VictorAlbertos.Jolyglot:gson:0.0.4',
+
+            //leakcanary
+            "leakcanary"              : "com.squareup.leakcanary:leakcanary-android:2.0-alpha-3",
+            "leaksentry"              : "com.squareup.leakcanary:leaksentry:2.0-alpha-2",
+
+            //immersionbar
+            "immersionbar"            : "com.gyf.immersionbar:immersionbar:${dependVersion.immersionbar}",
+            "immersionbar-components" : "com.gyf.immersionbar:immersionbar-components:${dependVersion.immersionbar}",
+            "immersionbar-ktx"        : "com.gyf.immersionbar:immersionbar-ktx:${dependVersion.immersionbar}",
     ]
 
 }

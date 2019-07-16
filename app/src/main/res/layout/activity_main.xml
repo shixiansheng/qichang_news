@@ -8,4 +8,9 @@
     tools:context=".MainActivity">
 
 
+    <TextView
+        android:background="@android:color/darker_gray"
+        android:layout_width="match_parent"
+        android:text="aaaaaaaaaaaaaaaaaaaaaaaa"
+        android:layout_height="match_parent" />
 </FrameLayout>

@@ -21,7 +21,7 @@
 #-renamesourcefileattribute SourceFile
 ###############################---------------第三方库------------------#######################################
 
-############################retrofit
+############################  retrofit
 # Retrofit does reflection on generic parameters. InnerClasses is required to use Signature and
 # EnclosingMethod is required to use InnerClasses.
 -keepattributes Signature, InnerClasses, EnclosingMethod
@@ -87,3 +87,12 @@
 
 # If single-type injection is used, that is, no interface is defined to implement IProvider, the following rules need to be added to protect the implementation
  -keep class * implements com.alibaba.android.arouter.facade.template.IProvider
+
+###########################  rx_cache
+-dontwarn io.rx_cache2.internal.**
+-keepclassmembers enum io.rx_cache2.Source { *; }
+-keepclassmembernames class * { @io.rx_cache2.* <methods>; }
+
+ ##########################  immersionbar
+-keep class com.gyf.immersionbar.* {*;}
+-dontwarn com.gyf.immersionbar.**

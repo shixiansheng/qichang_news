@@ -12,9 +12,10 @@ import cn.abr.common.base.BasePresenterFragment
  * 创建日期：2019/7/12/012
  *
  * 描述：
- *
- */
-class MainFragment : BasePresenterFragment<FragmentPresenter>(), MainContract.View {
+ **/
+
+
+class MainFragment : BasePresenterFragment<MainPresenter>(), MainContract.View {
 
     override fun onArticleResult(json: String) {
 
@@ -37,7 +38,7 @@ class MainFragment : BasePresenterFragment<FragmentPresenter>(), MainContract.Vi
         get() = R.layout.activity_main
 
     override fun initView() {
-        println("aaaaaa"+mPresenter)
+        println("aaaaaa" + getPresenter())
     }
 
     override fun initListener() {

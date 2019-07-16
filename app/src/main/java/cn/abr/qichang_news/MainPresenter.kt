@@ -23,7 +23,7 @@ class MainPresenter :
     override var model: MainContract.Model
 
     @Inject
-    constructor(mView: MainActivity, model: MainModel) {
+    constructor(mView: MainContract.View, model: MainContract.Model) {
         this.mView = mView
         this.model = model
     }

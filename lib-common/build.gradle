@@ -16,7 +16,7 @@ android {
 
     buildTypes {
         release {
-            consumerProguardFiles   'proguard-rules.pro'
+            consumerProguardFiles 'proguard-rules.pro'
         }
     }
 
@@ -42,38 +42,41 @@ dependencies {
     api rootProject.ext.dependencies["rxjava2:rxjava"]
     api rootProject.ext.dependencies["rxjava2:rxandroid"]
 
-    //okhttp
+    //okhttpinterceptor
     api rootProject.ext.dependencies["logging-interceptor"]
 
     //arouter
     api rootProject.ext.dependencies["arouter-api"]
     //kapt rootProject.ext.dependencies["arouter-compiler"]
 
-    //okhttp
+    //SmartRefreshLayout
     api rootProject.ext.dependencies["SmartRefreshLayout"]
     api rootProject.ext.dependencies["SmartRefreshHeader"]
     api rootProject.ext.dependencies["legacy-support-v4"]
 
     //dagger2
-    api rootProject.ext.dependencies["dagger"]
+    // api rootProject.ext.dependencies["dagger"]
     api rootProject.ext.dependencies["dagger-android"]
     api rootProject.ext.dependencies["dagger-android-support"]
     //kapt rootProject.ext.dependencies["dagger-compiler"]
     //kapt rootProject.ext.dependencies["dagger-android-processor"]
-
+    //rxlifecycle
     api rootProject.ext.dependencies["rxlifecycle"]
     api rootProject.ext.dependencies["rxlifecycle-components"]
+    //RxCache
+    api rootProject.ext.dependencies["RxCache"]
+    api rootProject.ext.dependencies["Jolyglot_gson"]
 
-    
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:2.0-alpha-3"
-    releaseImplementation 'com.squareup.leakcanary:leaksentry:2.0-alpha-2'
+    //leakcanary
+    debugImplementation rootProject.ext.dependencies["leakcanary"]
+    releaseImplementation rootProject.ext.dependencies["leaksentry"]
 
     // 基础依赖包，必须要依赖
-    api 'com.gyf.immersionbar:immersionbar:3.0.0-beta05'
+    api rootProject.ext.dependencies["immersionbar"]
 // fragment快速实现（可选）
-    api 'com.gyf.immersionbar:immersionbar-components:3.0.0-beta05'
+    api rootProject.ext.dependencies["immersionbar-components"]
 // kotlin扩展（可选）
-    api 'com.gyf.immersionbar:immersionbar-ktx:3.0.0-beta05'
+    api rootProject.ext.dependencies["immersionbar-ktx"]
 }
 repositories {
     mavenCentral()

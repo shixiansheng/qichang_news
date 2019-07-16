@@ -1,5 +1,6 @@
 package cn.abr.qichang_news;
 
+
 import dagger.Component;
 import dagger.Subcomponent;
 import dagger.android.AndroidInjectionModule;

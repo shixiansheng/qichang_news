@@ -1,5 +1,6 @@
 package cn.abr.common.base;
 
+
 import cn.abr.common.base.BaseActivity;
 import cn.abr.inabr.base.BasePresenterActivity;
 import dagger.Subcomponent;
