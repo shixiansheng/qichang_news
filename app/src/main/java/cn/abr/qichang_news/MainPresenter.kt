@@ -1,5 +1,6 @@
 package cn.abr.qichang_news
 
+import cn.abr.common.entity.Article
 import cn.abr.common.net.RxHttpUtil
 import cn.abr.inabr.net.HttpSubscriber
 import okhttp3.ResponseBody
@@ -31,10 +32,10 @@ class MainPresenter :
     override fun getArticle() {
         model.getArticle(mView.getArticleId())
             .compose(RxHttpUtil.bindToLifecycle(mView))
-            .subscribeWith(object : HttpSubscriber<ResponseBody>() {
+            .subscribeWith(object : HttpSubscriber<Article>() {
 
-                override fun onNext(data: ResponseBody) {
-                    mView.onArticleResult(data.string())
+                override fun onNext(data: Article) {
+                    mView.onArticleResult(data)
                 }
 
                 override fun onComplete() {

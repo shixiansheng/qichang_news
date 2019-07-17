@@ -2,6 +2,7 @@ package cn.abr.qichang_news
 
 import android.view.View
 import cn.abr.common.base.BasePresenterFragment
+import cn.abr.common.entity.Article
 
 /**
  *
@@ -17,7 +18,7 @@ import cn.abr.common.base.BasePresenterFragment
 
 class MainFragment : BasePresenterFragment<MainPresenter>(), MainContract.View {
 
-    override fun onArticleResult(json: String) {
+    override fun onArticleResult(article: Article) {
 
     }
 

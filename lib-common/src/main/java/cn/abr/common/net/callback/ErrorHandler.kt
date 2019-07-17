@@ -1,15 +1,20 @@
 package cn.abr.common.net.callback
 
 
-import android.widget.Toast
-import cn.abr.common.util.ConstantUtil
+import cn.abr.common.net.exception.ApiException
+import cn.abr.common.net.exception.ExceptionHandle
 
 class ErrorHandler private constructor() : ErrorListener {
 
     override fun handleError(e: Throwable) {
-
-        Toast.makeText(ConstantUtil.getAPPContext(), e.message, Toast.LENGTH_LONG).show()
+        ExceptionHandle.handleExceptions(e,this)
     }
+
+     fun onError(apiException: ApiException){
+        //处理错误逻辑
+         println(apiException)
+    }
+
 
     companion object {
         val Instance by lazy(LazyThreadSafetyMode.SYNCHRONIZED) {

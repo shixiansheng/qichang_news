@@ -1,6 +1,8 @@
 package cn.abr.common.net.exception;
 
+
 import android.net.ParseException;
+import android.util.MalformedJsonException;
 
 import com.google.gson.JsonParseException;
 
@@ -8,7 +10,11 @@ import org.apache.http.conn.ConnectTimeoutException;
 import org.json.JSONException;
 
 import java.net.ConnectException;
+import java.net.UnknownHostException;
 
+import cn.abr.common.net.callback.ErrorHandler;
+import io.reactivex.exceptions.CompositeException;
+import io.rx_cache2.RxCacheException;
 import retrofit2.HttpException;
 
 
@@ -23,7 +29,26 @@ public class ExceptionHandle {
 //    private static final int SERVICE_UNAVAILABLE = 503;
 //    private static final int GATEWAY_TIMEOUT = 504;
 
-    public static ApiException handleException(Throwable e) {
+    public static  void handleExceptions(Throwable e, ErrorHandler errorHandler) {
+        if (e instanceof CompositeException) {
+            CompositeException compositeE = (CompositeException) e;
+            for (Throwable throwable : compositeE.getExceptions()) {
+                if (throwable instanceof RxCacheException) {
+                    //缓存异常暂时不做处理
+                    //httpSubscriber.onFailure(new ApiException(e, ERROR.CACHE_ERROR, "缓存出错"));
+                    continue;
+                }
+                System.out.println(e instanceof ApiException);
+                ApiException apiException = handleException(throwable);
+                errorHandler.onError(apiException);
+            }
+        } else {
+            ApiException apiException = handleException(e);
+            errorHandler.onError(apiException);
+        }
+    }
+
+    private static ApiException handleException(Throwable e) {
         if (e instanceof HttpException) {
             HttpException httpException = (HttpException) e;
             return new ApiException(e, ERROR.HTTP_ERROR, "网络错误:" + httpException.code());
@@ -42,33 +67,48 @@ public class ExceptionHandle {
             return new ApiException(e, ERROR.TIMEOUT_ERROR, "连接超时");
         } else if (e instanceof ApiException) {
             return (ApiException) e;
+        } else if (e instanceof UnknownHostException) {
+            return new ApiException(e, ERROR.UNKNOWN_HOST_ERROR, "未知域名");
+        } else if (e instanceof MalformedJsonException) {
+            return new ApiException(e, ERROR.MALFORMEDJSON_ERROR, "json格式错误");
         } else {
-            return new ApiException(e, ERROR.UNKNOWN, "请检查你的网络");
+            return new ApiException(e, ERROR.UNKNOWN, "未知错误");
         }
     }
 
-    interface ERROR {
+    public interface ERROR {
 
-        String ERROR = "301";
+        int ERROR = 301;
+
+        //无data返回
+        int NO_DATA = 302;
 
         //未知错误
-        String UNKNOWN = "1000";
+        int UNKNOWN = 1000;
         /*解析错误*/
-        String PARSE_ERROR = "1001";
+        int PARSE_ERROR = 1001;
         //网络错误
-        String NETWORK_ERROR = "1002";
+        int NETWORK_ERROR = 1002;
         //协议出错
-        String HTTP_ERROR = "1003";
+        int HTTP_ERROR = 1003;
         //证书出错
-        String SSL_ERROR = "1004";
+        int SSL_ERROR = 1004;
         //连接超时
-        String TIMEOUT_ERROR = "1005";
+        int TIMEOUT_ERROR = 1005;
+        //未知域名
+        int UNKNOWN_HOST_ERROR = 1006;
+
+        //json格式错误
+        int MALFORMEDJSON_ERROR = 1007;
+        //缓存错误
+        int CACHE_ERROR = 1008;
 
     }
 
     public class ServerException extends RuntimeException {
-        public String code;
+        public int code;
         public String message;
     }
 }
+
 

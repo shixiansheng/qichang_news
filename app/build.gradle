@@ -23,7 +23,7 @@ android {
     }
     compileSdkVersion config.android.compileSdkVersion
     defaultConfig {
-        applicationId "cn.abr.qichang_news"
+        applicationId "cn.abr.bxmc"
         minSdkVersion config.android.minSdkVersion
         targetSdkVersion config.android.targetSdkVersion
         versionCode config.android.versionCode

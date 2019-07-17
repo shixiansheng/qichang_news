@@ -4,22 +4,15 @@ package cn.abr.common.net
 import android.os.Build
 
 
-import androidx.annotation.RequiresApi
-import androidx.collection.ArrayMap
-
-import java.io.File
-import java.io.IOException
-import java.util.ArrayList
 import java.util.concurrent.TimeUnit
 
-import cn.abr.common.BuildConfig
+import cn.abr.common.net.api.CacheProviders
 import cn.abr.common.util.ConstantUtil
 import cn.abr.inabr.net.api.APIService
 import cn.abr.inabr.net.api.Api
-import okhttp3.Interceptor
+import io.rx_cache2.internal.RxCache
+import io.victoralbertos.jolyglot.GsonSpeaker
 import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -29,6 +22,7 @@ class HttpUtil {
 
     companion object {
         val apis = Holder.apis
+        val cacheProviders = Holder.cacheProviders
     }
 
     private object Holder {
@@ -41,6 +35,15 @@ class HttpUtil {
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build()
                 return retrofit.create(APIService::class.java)
+            }
+
+        val cacheProviders: CacheProviders
+            get() {
+                val cacheProviders = RxCache.Builder()
+                    .useExpiredDataIfLoaderNotAvailable(true)
+                    .persistence(ConstantUtil.getAPPContext().cacheDir, GsonSpeaker())
+                    .using(CacheProviders::class.java)
+                return cacheProviders
             }
 
         private const val DEFAULT_TIMEOUT: Long = 60

@@ -1,6 +1,7 @@
 package cn.abr.qichang_news
 
 import android.view.View
+import cn.abr.common.entity.Article
 import cn.abr.inabr.base.BasePresenterActivity
 import javax.inject.Inject
 
@@ -18,7 +19,6 @@ class MainActivity : BasePresenterActivity<MainPresenter>(), MainContract.View {
     }
 
     override fun initData() {
-        println(name)
         getPresenter().getArticle()
     }
 
@@ -33,8 +33,8 @@ class MainActivity : BasePresenterActivity<MainPresenter>(), MainContract.View {
     override fun onClick(v: View?) {
     }
 
-    override fun onArticleResult(json: String) {
-        println(json)
+    override fun onArticleResult(article: Article) {
+        println(article)
     }
 
     override fun getArticleId(): String {

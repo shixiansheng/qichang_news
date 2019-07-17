@@ -1,5 +1,7 @@
 package cn.abr.inabr.net.api
 
+import cn.abr.common.base.BaseEntity
+import cn.abr.common.entity.Article
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import okhttp3.RequestBody
@@ -13,6 +15,6 @@ import retrofit2.http.*
 
 interface APIService {
 
-    @GET("https://api.qichangv.com/Content/getNews/{newsId}")
-    fun getArticleContent(@Path("newsId") id: String): Flowable<ResponseBody>
+    @GET("https://api.qichangv.com/v2/article/{newsId}")
+    fun getArticleContent(@Path("newsId") id: String): Flowable<BaseEntity<Article>>
 }

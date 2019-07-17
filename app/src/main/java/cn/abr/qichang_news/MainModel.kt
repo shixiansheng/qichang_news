@@ -1,7 +1,9 @@
 package cn.abr.qichang_news
 
+import cn.abr.common.entity.Article
 import cn.abr.common.net.HttpUtil
 import cn.abr.common.net.RxHttpUtil
+import cn.abr.common.net.api.Repository
 import cn.abr.inabr.net.HttpSubscriber
 import io.reactivex.Flowable
 import okhttp3.ResponseBody
@@ -22,7 +24,7 @@ class MainModel
 @Inject
 constructor() : MainContract.Model() {
 
-    override fun getArticle(id: String): Flowable<ResponseBody> {
-        return HttpUtil.apis.getArticleContent(id).compose(RxHttpUtil.rxSchedulerHelper())
+    override fun getArticle(id: String): Flowable<Article> {
+        return Repository.getArticle(id,false)
     }
 }

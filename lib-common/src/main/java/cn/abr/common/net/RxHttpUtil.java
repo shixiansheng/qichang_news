@@ -30,7 +30,7 @@ import okhttp3.ResponseBody;
  * Rx网络统一处理封装类
  */
 public class RxHttpUtil {
-    private static final String HTTP_REQUEST_SUCCESS_CODE = "200";
+    private static final int HTTP_REQUEST_SUCCESS_CODE = 0;
 
 
     public static <T> LifecycleTransformer<T> bindToLifecycle(BaseView view) {
@@ -90,10 +90,10 @@ public class RxHttpUtil {
                 return httpResponseFlowable.flatMap((Function<BaseEntity<T>, Flowable<T>>) new Function<BaseEntity<T>, Flowable<T>>() {
                     @Override
                     public Flowable<T> apply(BaseEntity<T> PHHttpResponse) throws Exception {
-                        if (PHHttpResponse.getCode().equals(HTTP_REQUEST_SUCCESS_CODE)) {
+                        if (PHHttpResponse.getCode()==HTTP_REQUEST_SUCCESS_CODE) {
                             return createData(PHHttpResponse.getData());
                         } else {
-                            return Flowable.error(new ApiException(new Exception(PHHttpResponse.getMsg()), PHHttpResponse.getCode()));
+                            return Flowable.error(new ApiException(new Exception(PHHttpResponse.getInfo()), PHHttpResponse.getCode()));
                         }
                     }
                 });
