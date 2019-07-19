@@ -17,8 +17,8 @@ ext {
             butterknife : "8.8.1",
             smartRefresh: "1.1.0-andx-13",
             dagger      : "2.23.2",
-            rxlifecycle      : "3.0.0",
-            immersionbar      : "3.0.0-beta05",
+            rxlifecycle : "3.0.0",
+            immersionbar: "3.0.0-beta05",
 
     ]
 
@@ -70,6 +70,11 @@ ext {
             "immersionbar"            : "com.gyf.immersionbar:immersionbar:${dependVersion.immersionbar}",
             "immersionbar-components" : "com.gyf.immersionbar:immersionbar-components:${dependVersion.immersionbar}",
             "immersionbar-ktx"        : "com.gyf.immersionbar:immersionbar-ktx:${dependVersion.immersionbar}",
+
+            //Android列表数据扁平化处理
+            "multitype"               : "me.drakeet.multitype:multitype:4.0.0-alpha3",
+
+            "kotlinpoet"              : "com.squareup:kotlinpoet:0.7.0",
     ]
 
 }

@@ -34,7 +34,7 @@ android {
         release {
             minifyEnabled true   //开启混淆
             //zipAlignEnabled true  //压缩优化
-           // shrinkResources true  //移出无用资源
+            // shrinkResources true  //移出无用资源
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
@@ -52,6 +52,10 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 }
 kapt {
     arguments {
@@ -66,10 +70,13 @@ dependencies {
     kapt config.dependencies["arouter-compiler"]
     kapt config.dependencies["dagger-compiler"]
     kapt config.dependencies["dagger-android-processor"]
-    implementation project(':lib-common')
 
     if (!isHomeModule.toBoolean()) {
         implementation project(':main_home')
+    } else if (!isMineModule.toBoolean()) {
+        implementation project(':main_mine')
+    } else {
+        implementation project(':lib-common')
     }
 
 }

@@ -1,11 +1,10 @@
-package cn.abr.qichang_news
+package cn.abr.qichang_news.mvp.main
 
 import cn.abr.common.entity.Article
 import cn.abr.inabr.base.BaseModel
 import cn.abr.inabr.base.BasePresenter
 import cn.abr.inabr.base.BaseView
 import io.reactivex.Flowable
-import okhttp3.ResponseBody
 
 /**
  *
@@ -19,7 +18,6 @@ import okhttp3.ResponseBody
  *
  */
 interface MainContract {
-
 
     abstract class Model : BaseModel() {
         abstract fun getArticle(id: String): Flowable<Article>

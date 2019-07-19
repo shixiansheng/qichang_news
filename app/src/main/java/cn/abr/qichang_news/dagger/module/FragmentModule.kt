@@ -1,8 +1,10 @@
-package cn.abr.qichang_news
+package cn.abr.qichang_news.dagger.module
 
+import cn.abr.qichang_news.ui.fragment.MainFragment
+import cn.abr.qichang_news.mvp.main.MainContract
+import cn.abr.qichang_news.mvp.main.MainModel
 import dagger.Module
 import dagger.Provides
-import javax.inject.Named
 
 /**
  * 版权：汽场(北京)信息科技有限公司 版权所有

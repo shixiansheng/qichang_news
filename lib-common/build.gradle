@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -77,6 +77,11 @@ dependencies {
     api rootProject.ext.dependencies["immersionbar-components"]
 // kotlin扩展（可选）
     api rootProject.ext.dependencies["immersionbar-ktx"]
+
+    //Android 列表数据扁平化处理
+    api rootProject.ext.dependencies["multitype"]
+
+    api rootProject.ext.dependencies["kotlinpoet"]
 }
 repositories {
     mavenCentral()

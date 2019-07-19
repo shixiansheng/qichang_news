@@ -130,8 +130,8 @@ abstract class LazyLoadFragment : BaseFragment() {
             return
         }
         for (child in fragments) {
-            if (child is LazyLoadFragment && !(child as LazyLoadFragment).isHided) {
-                (child as LazyLoadFragment).tryLoadData1()
+            if (child is LazyLoadFragment && !child.isHided) {
+                child.tryLoadData1()
             }
         }
     }

@@ -12,11 +12,6 @@ import java.lang.ref.WeakReference
 
 interface BasePresenter<V : BaseView, M : BaseModel> {
 
-    var mView: V
-    var model: M
-    fun detach() {
-        WeakReference(mView).clear()
-    }
 
     fun loadRepositories()
 

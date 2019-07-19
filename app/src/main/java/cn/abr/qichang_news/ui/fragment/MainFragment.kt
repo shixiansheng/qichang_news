@@ -1,8 +1,11 @@
-package cn.abr.qichang_news
+package cn.abr.qichang_news.ui.fragment
 
 import android.view.View
 import cn.abr.common.base.BasePresenterFragment
 import cn.abr.common.entity.Article
+import cn.abr.qichang_news.R
+import cn.abr.qichang_news.mvp.main.MainContract
+import cn.abr.qichang_news.mvp.main.MainPresenter
 
 /**
  *

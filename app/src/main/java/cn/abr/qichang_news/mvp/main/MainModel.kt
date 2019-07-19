@@ -1,12 +1,8 @@
-package cn.abr.qichang_news
+package cn.abr.qichang_news.mvp.main
 
 import cn.abr.common.entity.Article
-import cn.abr.common.net.HttpUtil
-import cn.abr.common.net.RxHttpUtil
 import cn.abr.common.net.api.Repository
-import cn.abr.inabr.net.HttpSubscriber
 import io.reactivex.Flowable
-import okhttp3.ResponseBody
 import javax.inject.Inject
 
 /**

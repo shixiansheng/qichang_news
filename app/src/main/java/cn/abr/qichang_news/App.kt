@@ -1,12 +1,11 @@
 package cn.abr.qichang_news
 
-import android.app.Application
 
 import javax.inject.Inject
 
 import cn.abr.common.base.BaseApp
+import cn.abr.qichang_news.dagger.DaggerAppComponent
 import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 

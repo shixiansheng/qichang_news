@@ -1,9 +1,8 @@
-package cn.abr.qichang_news
+package cn.abr.qichang_news.mvp.main
 
 import cn.abr.common.entity.Article
 import cn.abr.common.net.RxHttpUtil
 import cn.abr.inabr.net.HttpSubscriber
-import okhttp3.ResponseBody
 import javax.inject.Inject
 
 /**
@@ -20,17 +19,17 @@ import javax.inject.Inject
 class MainPresenter :
     MainContract.Presenter {
 
-    override var mView: MainContract.View
-    override var model: MainContract.Model
+    @Inject
+    lateinit var mView: MainContract.View
+    @Inject
+    lateinit var mModel: MainContract.Model
 
     @Inject
-    constructor(mView: MainContract.View, model: MainContract.Model) {
-        this.mView = mView
-        this.model = model
+    constructor() {
     }
 
     override fun getArticle() {
-        model.getArticle(mView.getArticleId())
+        mModel.getArticle(mView.getArticleId())
             .compose(RxHttpUtil.bindToLifecycle(mView))
             .subscribeWith(object : HttpSubscriber<Article>() {
 

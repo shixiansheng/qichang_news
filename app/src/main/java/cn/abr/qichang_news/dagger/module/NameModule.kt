@@ -1,4 +1,4 @@
-package cn.abr.qichang_news
+package cn.abr.qichang_news.dagger.module
 
 import dagger.Module
 import dagger.Provides
@@ -19,6 +19,7 @@ class NameModule {
 
     @Provides
     fun provideName(): String {
+
         return "cc"
     }
 }
