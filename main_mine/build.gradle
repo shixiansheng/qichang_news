@@ -6,6 +6,7 @@ if (isMineModule.toBoolean()) {
 }
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion config.android.compileSdkVersion
     sourceSets {
@@ -37,13 +38,19 @@ android {
 
     buildTypes {
         release {
-            consumerProguardFiles   'proguard-rules.pro'
+            consumerProguardFiles 'proguard-rules.pro'
         }
     }
 
 }
-
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(path: ':lib-common')
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt config.dependencies["arouter-compiler"]
 }

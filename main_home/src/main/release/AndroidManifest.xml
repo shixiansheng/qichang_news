@@ -3,7 +3,6 @@
     package="cn.abr.main.home">
 
     <application>
-        <activity android:name=".debug.MainActivity_Home"/>
     </application>
 
 </manifest>

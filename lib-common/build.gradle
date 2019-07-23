@@ -80,8 +80,12 @@ dependencies {
 
     //Android 列表数据扁平化处理
     api rootProject.ext.dependencies["multitype"]
-
+    //kotlinpoet
     api rootProject.ext.dependencies["kotlinpoet"]
+    //标签选择器
+    api rootProject.ext.dependencies["FlycoTabLayout_Lib"]
+
+
 }
 repositories {
     mavenCentral()

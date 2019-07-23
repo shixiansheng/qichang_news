@@ -5,7 +5,6 @@ import cn.abr.inabr.base.BaseModel
 import cn.abr.inabr.base.BasePresenter
 import cn.abr.inabr.base.BaseView
 import io.reactivex.Flowable
-import java.lang.String
 
 interface LoginContract {
     abstract class Model : BaseModel() {

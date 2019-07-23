@@ -73,8 +73,10 @@ ext {
 
             //Android列表数据扁平化处理
             "multitype"               : "me.drakeet.multitype:multitype:4.0.0-alpha3",
-
+            //代码模板生成
             "kotlinpoet"              : "com.squareup:kotlinpoet:0.7.0",
+            //
+            "FlycoTabLayout_Lib"              : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
     ]
 
 }

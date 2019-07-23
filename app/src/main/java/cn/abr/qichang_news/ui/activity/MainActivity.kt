@@ -1,20 +1,23 @@
 package cn.abr.qichang_news.ui.activity
 
 import android.view.View
+import androidx.fragment.app.Fragment
 import cn.abr.common.entity.Article
 import cn.abr.inabr.base.BasePresenterActivity
 import cn.abr.qichang_news.R
 import cn.abr.qichang_news.mvp.main.MainContract
 import cn.abr.qichang_news.mvp.main.MainPresenter
-import java.io.BufferedInputStream
-import java.io.BufferedOutputStream
-import java.io.InputStream
+import com.flyco.tablayout.listener.CustomTabEntity
 import javax.inject.Inject
 class MainActivity : BasePresenterActivity<MainPresenter>(), MainContract.View {
 
 
+
     @Inject
-    lateinit var name: String
+    lateinit var fragments: ArrayList<Fragment>
+
+    @Inject
+    lateinit var tabs: ArrayList<CustomTabEntity>
 
     override val layoutId: Int
         get() = R.layout.activity_main

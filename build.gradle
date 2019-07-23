@@ -18,7 +18,7 @@ buildscript {
 //为了防止不同模块的资源应为命名冲突而被错误的覆盖
 subprojects {
     afterEvaluate {
-       /* android {
+        /* android {
             resourcePrefix "${project.name}_"
         }*/
     }

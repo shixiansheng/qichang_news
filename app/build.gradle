@@ -1,9 +1,7 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-// 可以参考 module-kotlin 模块中的写法
 apply plugin: 'kotlin-kapt'
 def config = rootProject.ext
 android {
@@ -73,8 +71,15 @@ dependencies {
 
     if (!isHomeModule.toBoolean()) {
         implementation project(':main_home')
-    } else if (!isMineModule.toBoolean()) {
+    }
+    if (!isMineModule.toBoolean()) {
         implementation project(':main_mine')
+    }
+    if (!isNewsModule.toBoolean()) {
+        implementation project(':main_news')
+    }
+    if (!isEventModule.toBoolean()) {
+        implementation project(':main_event')
     } else {
         implementation project(':lib-common')
     }
