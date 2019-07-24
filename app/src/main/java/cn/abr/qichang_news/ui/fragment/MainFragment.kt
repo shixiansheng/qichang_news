@@ -39,7 +39,7 @@ class MainFragment : BasePresenterFragment<MainPresenter>(), MainContract.View {
     }
 
     override val layoutId: Int
-        get() = R.layout.activity_main
+        get() = R.layout.app_activity_main
 
     override fun initView() {
         println("aaaaaa" + getPresenter())

@@ -8,6 +8,7 @@ import cn.abr.qichang_news.R
 import cn.abr.qichang_news.mvp.main.MainContract
 import cn.abr.qichang_news.mvp.main.MainPresenter
 import com.flyco.tablayout.listener.CustomTabEntity
+import kotlinx.android.synthetic.main.app_activity_main.*
 import javax.inject.Inject
 class MainActivity : BasePresenterActivity<MainPresenter>(), MainContract.View {
 
@@ -20,10 +21,9 @@ class MainActivity : BasePresenterActivity<MainPresenter>(), MainContract.View {
     lateinit var tabs: ArrayList<CustomTabEntity>
 
     override val layoutId: Int
-        get() = R.layout.activity_main
+        get() = R.layout.app_activity_main
 
     override fun initView() {
-        //supportFragmentManager.beginTransaction().add(R.id.root_layout, MainFragment()).commit()
     }
 
     override fun initData() {
@@ -31,6 +31,7 @@ class MainActivity : BasePresenterActivity<MainPresenter>(), MainContract.View {
     }
 
     override fun initListener() {
+        main_tab.setTabData(tabs,this@MainActivity,R.id.main_fl,fragments)
     }
 
 
